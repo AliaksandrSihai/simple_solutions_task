@@ -1,0 +1,24 @@
+{% extends 'stripe_shop/base.html' %}
+{% block content %}
+{% for object in object_list %}
+
+  <main>
+
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">{{ object.name }} </h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">{{ object.price }}({{ object.currency}})<small class="text-body-secondary fw-light"></small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>{{ object.description }}</li>
+            </ul>
+            <div class="d-grid gap-2 d-md-block">
+              <a class="btn btn-primary" href="#" type="button"> Купить</a>
+              <a class="btn btn-primary" href="#" type="button">Добавить в корзину</a>
+            </div>
+          </div>
+
+
+  </main>
+{% endfor %}
+{% endblock content %}
