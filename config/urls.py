@@ -21,4 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', include('users.urls')),
     path('', include('stripe_shop.urls')),
+    path('cart/', include('cart.urls')),
+    path('api/', include('api.urls')),
 ]

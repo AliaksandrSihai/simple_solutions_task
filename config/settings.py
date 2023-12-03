@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'users',
-    'stripe_shop'
+    'stripe_shop',
+    'cart',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +139,5 @@ STATICFILES_DIRS = (
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
+
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
