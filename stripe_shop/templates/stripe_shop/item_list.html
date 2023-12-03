@@ -14,8 +14,7 @@
                   <li>{{ object.description }}</li>
                 </ul>
                 <div class="d-grid gap-2 d-md-block">
-                  <a class="btn btn-primary" href="{% url 'stripe_shop:item_details' object.pk %}" type="button"> Перейти </a>
-                  <a class="btn btn-primary" href="#" type="button">Добавить в корзину</a>
+                  <a class="btn btn-outline-light" href="{% url 'stripe_shop:item_details' object.pk %}" type="button"> Купить </a>
                 </div>
               </div>
             </div>

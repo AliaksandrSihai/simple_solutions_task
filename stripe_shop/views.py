@@ -34,7 +34,7 @@ class RetrieveItem(generic.DetailView):
 class BuyItemView(View):
     """ Добавление товара в корзину"""
     def get(self, request, pk):
-        quantity_value = request.GET.get('order_set-0-quantity', 'default_value')
+        quantity_value = request.GET.get('quantity', '1')
         product = Item.objects.get(pk=int(pk))
         Order.objects.create(product=product, quantity=int(quantity_value))
         return redirect('cart:order')

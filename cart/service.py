@@ -20,3 +20,4 @@ def create_payment(quantity, amount, currency):
         return_url='http://localhost:8000' + reverse('cart:order')
 
     )
+    return secret.id

@@ -36,8 +36,10 @@ class CreateStripe(View):
     def post(self, request, pk):
         order = Order.objects.get(pk=pk)
         try:
-            order.stripe_id = create_payment(quantity=order.quantity, amount=order.product.price,
-                                             currency=order.product.currency.lower())
+            stripe_id = create_payment(quantity=order.quantity, amount=order.product.price,
+                                       currency=order.product.currency.lower())
+            order.stripe_id = stripe_id
+            order.status = True
             order.save()
             return redirect('cart:order_success')
         except ValueError:
