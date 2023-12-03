@@ -1,10 +1,10 @@
 ## О проекте:
- Реализация Django + Stripe API бэкенд проекта.
+ Реализация Django + Stripe API бэкенд проекта. Зависимости проекта находятся в requirements.txt, пример необходимых настроек в файле .env_sample .
 
 ## Действия для запуска контейнеров:
 - **git clone git@github.com:AliaksandrSihai/simple_solutions_task.git**
 - **docker-compose up**
-- **для создания супер пользователя необходимо внести в файл users/management/commands/csu.py необходимые данные(почта, пароль), открыть работающий контейнер и выполнить команду (docker-compose exec project python manage.py csu)
+- **для создания супер пользователя необходимо внести в файл users/management/commands/csu.py необходимые данные(почта, пароль), открыть работающий контейнер и выполнить команду (docker-compose exec project python manage.py csu)**
 
   ## Команды для работы с контейнерами:
   ## Запуск контейнеров:
