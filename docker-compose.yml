@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  postgres_db:
+    image: postgres
+    container_name: postgres_db
+    restart: on-failure
+    env_file:
+      - .env
+    volumes:
+      - db_data:/var/lib/postgresql
+    ports:
+      - '5432:5432'
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "${POSTGRES_DB}", "-U", "${POSTGRES_USER}", "-h", "${POSTGRES_HOST}", "-p", "5432" ]
+      timeout: 30s
+      retries: 3
+
+  project:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: project
+    restart: on-failure
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - '8000:8000'
+    volumes:
+      - .:/simple_solutions/
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+
+
+volumes:
+  db_data:
