@@ -4,36 +4,39 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('stripe_shop', '0002_remove_order_product_order_product'),
+        ("stripe_shop", "0002_remove_order_product_order_product"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='order',
-            name='discount',
+            model_name="order",
+            name="discount",
         ),
         migrations.RemoveField(
-            model_name='order',
-            name='product',
+            model_name="order",
+            name="product",
         ),
         migrations.RemoveField(
-            model_name='order',
-            name='tax',
+            model_name="order",
+            name="tax",
         ),
         migrations.AlterField(
-            model_name='item',
-            name='currency',
-            field=models.CharField(choices=[('RUB', 'RUB'), ('USD', 'USD')], max_length=3, verbose_name='валюта'),
+            model_name="item",
+            name="currency",
+            field=models.CharField(
+                choices=[("RUB", "RUB"), ("USD", "USD")],
+                max_length=3,
+                verbose_name="валюта",
+            ),
         ),
         migrations.DeleteModel(
-            name='Discount',
+            name="Discount",
         ),
         migrations.DeleteModel(
-            name='Order',
+            name="Order",
         ),
         migrations.DeleteModel(
-            name='Tax',
+            name="Tax",
         ),
     ]

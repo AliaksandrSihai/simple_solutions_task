@@ -4,15 +4,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('stripe_shop', '0003_remove_order_discount_remove_order_product_and_more'),
+        ("stripe_shop", "0003_remove_order_discount_remove_order_product_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='item',
-            name='currency',
-            field=models.CharField(choices=[('USD', 'USD'), ('RUB', 'RUB')], max_length=3, verbose_name='валюта'),
+            model_name="item",
+            name="currency",
+            field=models.CharField(
+                choices=[("USD", "USD"), ("RUB", "RUB")],
+                max_length=3,
+                verbose_name="валюта",
+            ),
         ),
     ]

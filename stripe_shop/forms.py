@@ -4,8 +4,8 @@ from stripe_shop.models import Item
 
 
 class ItemForm(forms.ModelForm):
-    """ Форма для модели Item """
+    """Форма для модели Item"""
 
     class Meta:
         model = Item
-        fields = '__all__'
+        fields = "__all__"

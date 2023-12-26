@@ -4,8 +4,8 @@ from stripe_shop.models import Item
 
 
 class ItemSerializer(ModelSerializer):
-    """ Сериалайзер для продуктов"""
+    """Сериалайзер для продуктов"""
 
     class Meta:
         model = Item
-        fields = '__all__'
+        fields = "__all__"

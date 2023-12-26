@@ -4,7 +4,8 @@ from cart.models import Order
 
 
 class CartForm(ModelForm):
-    """ Форма для корзины """
+    """Форма для корзины"""
+
     class Meta:
         model = Order
-        fields = '__all__'
+        fields = "__all__"

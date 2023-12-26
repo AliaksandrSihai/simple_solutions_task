@@ -6,41 +6,56 @@ from cart.service import create_payment
 
 
 class SuccessTemplateView(TemplateView):
-    template_name = 'cart/success_order.html'
-    title = ' Спасибо за заказ!'
+    template_name = "cart/success_order.html"
+    title = " Спасибо за заказ!"
 
 
 class OrderTemplateView(TemplateView):
-    template_name = 'cart/order_form.html'
+    template_name = "cart/order_form.html"
 
 
 class CanceledTemplateView(TemplateView):
-    template_name = 'cart/canceled.html'
+    template_name = "cart/canceled.html"
 
 
 class OrdersListView(generic.ListView):
-    """ Просмотр заказов """
+    """Просмотр заказов"""
 
     model = Order
 
-    template_name = 'cart/order_form.html'
+    template_name = "cart/order_form.html"
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['object_list'] = Order.objects.select_related('product').filter(status=False)
+        cart = Order.objects.select_related("product").filter(
+            user=self.request.user, status=False
+        )
+        if cart.exists():
+            context["object_list"] = cart
         return context
 
 
 class CreateStripe(View):
-    """ Создание платежа в Stripe"""
+    """Создание платежа в Stripe"""
+
     def post(self, request, pk):
         order = Order.objects.get(pk=pk)
+        price = order.product.price * order.quantity
+
+        if order.discount is not None:
+            discount = price * order.discount.percent / 100
+            price -= discount
+
+        if order.tax is not None:
+            tax = price * order.tax.tax_percent / 100
+            price += tax
         try:
-            stripe_id = create_payment(quantity=order.quantity, amount=order.product.price,
-                                       currency=order.product.currency.lower())
+            stripe_id = create_payment(
+                amount=price, currency=order.product.currency.lower()
+            )
             order.stripe_id = stripe_id
             order.status = True
             order.save()
-            return redirect('cart:order_success')
+            return redirect("cart:order_success")
         except ValueError:
-            return redirect('cart:order_cancel')
+            return redirect("cart:order_cancel")

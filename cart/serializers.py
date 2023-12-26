@@ -4,7 +4,7 @@ from cart.models import Order
 
 
 class CartSerializer(serializers.ModelSerializer):
-    """ Сериалайзер для корзины """
+    """Сериалайзер для корзины"""
 
     total_price = serializers.SerializerMethodField(read_only=True)
 
@@ -14,4 +14,4 @@ class CartSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = '__all__'
+        fields = "__all__"

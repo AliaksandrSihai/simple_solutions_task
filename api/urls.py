@@ -7,9 +7,9 @@ app_name = ApiConfig.name
 
 
 router = routers.DefaultRouter()
-router.register(r'item', ItemViewSet, basename='item')
+router.register(r"item", ItemViewSet, basename="item")
 
 
 urlpatterns = [
-    path('cart/<int:pk>/', CartRetrieveAPIView.as_view(), name='cart'),
+    path("cart/<int:pk>/", CartRetrieveAPIView.as_view(), name="cart"),
 ] + router.urls

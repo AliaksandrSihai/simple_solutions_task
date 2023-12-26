@@ -5,16 +5,19 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('stripe_shop', '0004_alter_item_currency'),
-        ('cart', '0001_initial'),
+        ("stripe_shop", "0004_alter_item_currency"),
+        ("cart", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='order',
-            name='product',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='product', to='stripe_shop.item'),
+            model_name="order",
+            name="product",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="product",
+                to="stripe_shop.item",
+            ),
         ),
     ]
